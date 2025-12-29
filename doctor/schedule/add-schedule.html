@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إضافة موعد جديد</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .add-appointment {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .add-appointment__add-schedule {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .add-appointment__c-remove-1 {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        
+        .add-appointment__c-remove-1:hover {
+            background: #f3f4f6;
+        }
+        
+        .add-appointment__schedule-new-appointment {
+            font-size: 28px;
+            font-weight: 700;
+            color: #003785;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px 25px;
+            margin-bottom: 30px;
+        }
+        
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-field--full {
+            grid-column: 1 / -1;
+        }
+        
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .add-appointment__textfield {
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 16px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .add-appointment__textfield:focus-within {
+            border-color: #003785;
+            box-shadow: 0 0 0 3px rgba(0, 55, 133, 0.1);
+        }
+        
+        .add-appointment__textfield input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+            color: #374151;
+        }
+        
+        .add-appointment__textfield input::placeholder {
+            color: #9ca3af;
+        }
+        
+        .add-appointment__textfield--dropdown {
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .add-appointment__textfield--textarea {
+            height: 100px;
+            align-items: flex-start;
+            padding-top: 12px;
+        }
+        
+        .add-appointment__textfield textarea {
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 80px;
+            resize: vertical;
+            font-size: 14px;
+            color: #374151;
+            font-family: inherit;
+        }
+        
+        .dropdown-icon {
+            position: absolute;
+            right: 12px;
+            width: 16px;
+            height: 16px;
+            pointer-events: none;
+        }
+        
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .add-appointment__button {
+            background: #003785;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .add-appointment__button:hover {
+            background: #002a66;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 55, 133, 0.3);
+        }
+        
+        .add-appointment__button-197 {
+            background: #f3f4f6;
+            color: #374151;
+            border: 2px solid #d1d5db;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-appointment__button-197:hover {
+            background: #e5e7eb;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+            }
+            
+            .add-appointment__button,
+            .add-appointment__button-197 {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="add-appointment">
+        <div class="add-appointment__add-schedule">
+            <div class="add-appointment__c-remove-1">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </div>
+            
+            <div class="add-appointment__schedule-new-appointment">
+                Schedule New Appointment
+            </div>
+            
+            <div class="form-grid">
+                <div class="add-appointment__textbox-15 form-field">
+                    <label class="add-appointment__patient-name form-label">
+                        <span class="patient-name-span">Patient </span>
+                        <span class="patient-name-span2">Name</span>
+                    </label>
+                    <div class="add-appointment__textfield">
+                        <input type="text" class="add-appointment__enter-patent-name" placeholder="Enter Patient Name" />
+                    </div>
+                </div>
+                
+                <div class="add-appointment__textbox-152 form-field">
+                    <label class="add-appointment__phone-number form-label">Phone Number</label>
+                    <div class="add-appointment__textfield">
+                        <input type="tel" placeholder="Enter Phone Number" />
+                    </div>
+                </div>
+                
+                <div class="add-appointment__textbox-153 form-field">
+                    <label class="add-appointment__email-address form-label">Email Address *</label>
+                    <div class="add-appointment__textfield">
+                        <input type="email" placeholder="Enter Email Address" />
+                    </div>
+                </div>
+                
+                <div class="add-appointment__dropdown-button-3 form-field">
+                    <label class="add-appointment__appointment-type form-label">Appointment Type</label>
+                    <div class="add-appointment__textfield add-appointment__textfield--dropdown">
+                        <span class="add-appointment__new-patient">New Patient</span>
+                        <svg class="dropdown-icon" viewBox="0 0 16 16" fill="none" stroke="#666" stroke-width="2">
+                            <path d="M4 6l4 4 4-4"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="add-appointment__textbox-16 form-field">
+                    <label class="add-appointment__appointment-date form-label">Appointment Date</label>
+                    <div class="add-appointment__textfield">
+                        <input type="date" class="add-appointment___09-feb-2021" value="2021-02-09" />
+                    </div>
+                </div>
+                
+                <div class="add-appointment__dropdown-button-32 form-field">
+                    <label class="add-appointment__appointment-time form-label">Appointment Time</label>
+                    <div class="add-appointment__textfield add-appointment__textfield--dropdown">
+                        <span class="add-appointment__select-time">Select Time</span>
+                        <svg class="dropdown-icon" viewBox="0 0 16 16" fill="none" stroke="#666" stroke-width="2">
+                            <path d="M4 6l4 4 4-4"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="add-appointment__dropdown-button-33 form-field form-field--full">
+                    <label class="add-appointment__duration-time-miunte form-label">Duration Time (minute)</label>
+                    <div class="add-appointment__textfield add-appointment__textfield--dropdown">
+                        <span class="add-appointment___30-minute">30 minute</span>
+                        <svg class="dropdown-icon" viewBox="0 0 16 16" fill="none" stroke="#666" stroke-width="2">
+                            <path d="M4 6l4 4 4-4"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="add-appointment__textarea-1 form-field form-field--full">
+                    <label class="add-appointment__notes form-label">Notes</label>
+                    <div class="add-appointment__textfield add-appointment__textfield--textarea">
+                        <textarea class="add-appointment__enter-any-addation-notes" placeholder="Enter any additional notes"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="buttons-container">
+                <button class="add-appointment__button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span class="add-appointment__schedule-appointment">Schedule Appointment</span>
+                </button>
+                <button class="add-appointment__button-197">
+                    <span class="add-appointment__cancel">Cancel</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Link to external JavaScript file -->
+    <script src="./add-schedule.js"></script>
+</body>
+</html>

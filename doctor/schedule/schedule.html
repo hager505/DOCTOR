@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./schedule.css" />
+    <title>Schedule Management - CardioAI</title>
+</head>
+
+<body>
+    <div class="schedule-page">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar__logo">
+                <div class="sidebar__logo-text">
+                    <span class="logo-cardio">Cardio</span><span class="logo-ai">AI</span>
+                </div>
+            </div>
+
+            <nav class="sidebar__nav">
+                <a href="#" class="sidebar__nav-item">
+                    <img src="Dashboard.png" alt="" class="sidebar__nav-icon" />
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="Patient Search.png" alt="" class="sidebar__nav-icon" />
+                    <span>Patient Search</span>
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="My Patients.png" alt="" class="sidebar__nav-icon" />
+                    <span>My Patients</span>
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="Requests.png" alt="" class="sidebar__nav-icon" />
+                    <span>Requests</span>
+                </a>
+                <a href="#" class="sidebar__nav-item sidebar__nav-item--active">
+                    <img src="Schedule.png" alt="" class="sidebar__nav-icon" />
+                    <span>Schedule</span>
+                </a>
+            </nav>
+
+            <div class="sidebar__ai-chat">
+                <img src="AI_CAHT.png" alt="" class="sidebar__ai-icon" />
+                <span class="sidebar__ai-text">
+                    <span class="logo-cardio">AI</span><span class="logo-ai">Chatbot</span>
+                </span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="page-header__title">
+                    <h1>Schedule Management</h1>
+                    <p>Manage your appointments and availability</p>
+                </div>
+                <div class="page-header__actions">
+                    <div class="date-picker">
+                        <img src="Calendar (8).png" alt="" class="date-picker__icon" />
+                        <span class="date-picker__text">09 Feb 2021</span>
+                    </div>
+                    <button class="btn btn--primary">
+                        <img src="Add.png" alt="" class="btn__icon" />
+                        <span>New Appointment</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <section class="stats-cards">
+                <div class="stats-card">
+                    <div class="stats-card__header">
+                        <span class="stats-card__title">Today's Appointments</span>
+                        <img src="Today's Appointments.png" alt="" class="stats-card__icon" />
+                    </div>
+                    <div class="stats-card__value">8</div>
+                    <div class="stats-card__subtitle">
+                        <span class="stats-card__count">0</span>
+                        <span>confirmed</span>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-card__header">
+                        <span class="stats-card__title">Upcoming</span>
+                        <img src="Upcoming.png" alt="" class="stats-card__icon" />
+                    </div>
+                    <div class="stats-card__value">0</div>
+                    <div class="stats-card__subtitle">Next 7 days</div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-card__header">
+                        <span class="stats-card__title">Completed</span>
+                        <img src="Completed.png" alt="" class="stats-card__icon" />
+                    </div>
+                    <div class="stats-card__value stats-card__value--success">4</div>
+                    <div class="stats-card__subtitle">This month</div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-card__header">
+                        <span class="stats-card__title">Available Slots</span>
+                        <img src="Available Slots.png" alt="" class="stats-card__icon" />
+                    </div>
+                    <div class="stats-card__value stats-card__value--warning">20</div>
+                    <div class="stats-card__subtitle">Today remaining</div>
+                </div>
+            </section>
+
+            <!-- Tab Navigation -->
+            <nav class="tabs">
+                <button class="tabs__btn tabs__btn--active" data-tab="today">Today (0)</button>
+                <button class="tabs__btn" data-tab="upcoming">Upcoming (1)</button>
+                <button class="tabs__btn" data-tab="calendar">Calendar View</button>
+            </nav>
+
+            <!-- Today View -->
+            <section id="today-view" class="view-section view-section--active">
+                <div class="empty-state">
+                    <div class="empty-state__header">
+                        <h3>Today's Schedule - 9/18/2025</h3>
+                        <p>Your appointments for the selected date</p>
+                    </div>
+                    <div class="empty-state__content">
+                        <img src="appointments.png" alt="" class="empty-state__icon" />
+                        <h4>No appointments scheduled</h4>
+                        <p>You have no appointments for this date.</p>
+                        <button class="btn btn--primary">
+                            <img src="Add.png" alt="" class="btn__icon" />
+                            <span>Schedule Appointment</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upcoming View -->
+            <section id="upcoming-view" class="view-section">
+                <div class="empty-state">
+                    <div class="empty-state__header">
+                        <h3>Upcoming Appointments</h3>
+                        <p>Your scheduled appointments for the next 7 days</p>
+                    </div>
+                    <div class="empty-state__content">
+                        <img src="appointments.png" alt="" class="empty-state__icon" />
+                        <h4>1 upcoming appointment</h4>
+                        <p>View and manage your upcoming appointments.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calendar View -->
+            <section id="calendar-view" class="view-section">
+                <div class="calendar-section">
+                    <div class="calendar-section__header">
+                        <h3>Calendar View</h3>
+                        <p>Weekly schedule overview</p>
+                    </div>
+                    <div class="calendar-grid">
+                        <table class="calendar-table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                    <th>Sun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="time-cell">08:00</td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-cell">08:30</td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-cell">09:00</td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-cell">09:30</td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-cell">10:00</td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-cell">10:30</td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-cell">11:00</td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                    <td class="slot-cell"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <div class="page-footer__logo">
+                <img src="small_IMAGE_ai.png" alt="" class="page-footer__logo-img" />
+                <span class="page-footer__logo-text">
+                    <span class="logo-cardio">Cardio</span><span class="logo-ai">AI</span>
+                </span>
+            </div>
+            <nav class="page-footer__links">
+                <span class="page-footer__label">Quick Links</span>
+                <a href="#">Home</a>
+                <a href="#">Features</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            <button class="btn btn--danger">Log out</button>
+        </footer>
+    </div>
+    <script src="./schedule.js"></script>
+</body>
+
+</html>
