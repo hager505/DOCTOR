@@ -5,207 +5,381 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>إضافة موعد جديد</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .add-appointment {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .add-appointment__add-schedule {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            width: 100%;
-            max-width: 900px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-        
-        .add-appointment__c-remove-1 {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-        
-        .add-appointment__c-remove-1:hover {
-            background: #f3f4f6;
-        }
-        
-        .add-appointment__schedule-new-appointment {
-            font-size: 28px;
-            font-weight: 700;
-            color: #003785;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #e5e7eb;
-        }
-        
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px 25px;
-            margin-bottom: 30px;
-        }
-        
-        .form-field {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .form-field--full {
-            grid-column: 1 / -1;
-        }
-        
-        .form-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #374151;
-        }
-        
-        .add-appointment__textfield {
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            padding: 12px 16px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .add-appointment__textfield:focus-within {
-            border-color: #003785;
-            box-shadow: 0 0 0 3px rgba(0, 55, 133, 0.1);
-        }
-        
-        .add-appointment__textfield input {
-            border: none;
-            outline: none;
-            width: 100%;
-            font-size: 14px;
-            color: #374151;
-        }
-        
-        .add-appointment__textfield input::placeholder {
-            color: #9ca3af;
-        }
-        
-        .add-appointment__textfield--dropdown {
-            cursor: pointer;
-            user-select: none;
-        }
-        
-        .add-appointment__textfield--textarea {
-            height: 100px;
-            align-items: flex-start;
-            padding-top: 12px;
-        }
-        
-        .add-appointment__textfield textarea {
-            border: none;
-            outline: none;
-            width: 100%;
-            height: 80px;
-            resize: vertical;
-            font-size: 14px;
-            color: #374151;
-            font-family: inherit;
-        }
-        
-        .dropdown-icon {
-            position: absolute;
-            right: 12px;
-            width: 16px;
-            height: 16px;
-            pointer-events: none;
-        }
-        
-        .buttons-container {
-            display: flex;
-            gap: 20px;
-            padding-top: 30px;
-            border-top: 1px solid #e5e7eb;
-        }
-        
-        .add-appointment__button {
-            background: #003785;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 15px 30px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-        }
-        
-        .add-appointment__button:hover {
-            background: #002a66;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 55, 133, 0.3);
-        }
-        
-        .add-appointment__button-197 {
-            background: #f3f4f6;
-            color: #374151;
-            border: 2px solid #d1d5db;
-            border-radius: 10px;
-            padding: 15px 30px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .add-appointment__button-197:hover {
-            background: #e5e7eb;
-            transform: translateY(-2px);
-        }
-        
-        @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .buttons-container {
-                flex-direction: column;
-            }
-            
-            .add-appointment__button,
-            .add-appointment__button-197 {
-                width: 100%;
-                justify-content: center;
-            }
-        }
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #f2f7fd 0%, #fafafb 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Main Container */
+.add-appointment {
+    width: 100%;
+    max-width: 800px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.add-appointment__add-schedule {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 55, 133, 0.08);
+    padding: 40px;
+    position: relative;
+}
+
+/* Close Button */
+.add-appointment__c-remove-1 {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: #fafafb;
+}
+
+.add-appointment__c-remove-1:hover {
+    background: #f2f7fd;
+    transform: rotate(90deg);
+}
+
+.add-appointment__c-remove-1 svg {
+    stroke: #003785;
+    transition: stroke 0.3s ease;
+}
+
+.add-appointment__c-remove-1:hover svg {
+    stroke: #002557;
+}
+
+/* Header */
+.add-appointment__schedule-new-appointment {
+    font-size: 28px;
+    font-weight: 700;
+    color: #003785;
+    margin-bottom: 32px;
+    padding-right: 50px;
+    line-height: 1.3;
+}
+
+/* Form Grid */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-field--full {
+    grid-column: 1 / -1;
+}
+
+/* Labels */
+.form-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #003785;
+    display: block;
+}
+
+.patient-name-span,
+.patient-name-span2 {
+    color: #003785;
+}
+
+/* Input Fields */
+.add-appointment__textfield {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #fafafb;
+    border: 2px solid #f2f7fd;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.add-appointment__textfield:hover {
+    border-color: #cde586;
+    background: #ffffff;
+}
+
+.add-appointment__textfield:focus-within {
+    border-color: #cde586;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(205, 229, 134, 0.2);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    color: #003785;
+    outline: none;
+    font-family: inherit;
+}
+
+input::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+input[type="date"] {
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+/* Dropdown Fields */
+.add-appointment__textfield--dropdown {
+    padding: 14px 16px;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.add-appointment__textfield--dropdown:hover {
+    border-color: #cde586;
+}
+
+.add-appointment__new-patient,
+.add-appointment__select-time,
+.add-appointment___30-minute {
+    color: #003785;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.dropdown-icon {
+    width: 20px;
+    height: 20px;
+    stroke: #003785;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.add-appointment__textfield--dropdown:hover .dropdown-icon {
+    transform: translateY(2px);
+}
+
+/* Textarea */
+.add-appointment__textfield--textarea {
+    padding: 0;
+    min-height: 120px;
+}
+
+textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    color: #003785;
+    outline: none;
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+textarea::placeholder {
+    color: #999;
+}
+
+/* Buttons Container */
+.buttons-container {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    padding-top: 8px;
+}
+
+/* Primary Button */
+.add-appointment__button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #003785 0%, #002557 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 55, 133, 0.2);
+}
+
+.add-appointment__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 55, 133, 0.3);
+    background: linear-gradient(135deg, #002557 0%, #001a3d 100%);
+}
+
+.add-appointment__button:active {
+    transform: translateY(0);
+}
+
+.add-appointment__button svg {
+    stroke: #cde586;
+}
+
+.add-appointment__schedule-appointment {
+    color: #ffffff;
+}
+
+/* Cancel Button */
+.add-appointment__button-197 {
+    padding: 14px 28px;
+    background: #fafafb;
+    color: #003785;
+    border: 2px solid #f2f7fd;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-appointment__button-197:hover {
+    background: #f2f7fd;
+    border-color: #cde586;
+    transform: translateY(-2px);
+}
+
+.add-appointment__button-197:active {
+    transform: translateY(0);
+}
+
+.add-appointment__cancel {
+    color: #003785;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .add-appointment__add-schedule {
+        padding: 28px 20px;
+    }
+    
+    .add-appointment__schedule-new-appointment {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .buttons-container {
+        flex-direction: column-reverse;
+    }
+    
+    .add-appointment__button,
+    .add-appointment__button-197 {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+    
+    .add-appointment__add-schedule {
+        padding: 24px 16px;
+    }
+    
+    .add-appointment__schedule-new-appointment {
+        font-size: 22px;
+    }
+    
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="date"],
+    .add-appointment__textfield--dropdown {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+}
+
+/* Accessibility */
+input:focus,
+textarea:focus,
+button:focus {
+    outline: 2px solid #cde586;
+    outline-offset: 2px;
+}
+
+/* Optional: Loading State */
+.add-appointment__button.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.add-appointment__button.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
     </style>
 </head>
 <body>

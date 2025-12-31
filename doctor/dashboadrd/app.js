@@ -1,7 +1,6 @@
 /*************************************************
  * Cardio AI Dashboard – Vanilla JS
  *************************************************/
-
 console.log("Cardio AI JS Loaded");
 
 /* ================== HELPERS ================== */
@@ -526,5 +525,3 @@ document.addEventListener("DOMContentLoaded", () => {
   
   console.log("✅ All interactions initialized");
 });
-
-
